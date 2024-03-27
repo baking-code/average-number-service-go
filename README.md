@@ -25,7 +25,7 @@ Lightweight express app which calls a configured endpoint periodically and calcu
 To start the service, run
 
 ```
-npm run start
+go run main.go
 ```
 
 ## Testing
@@ -35,5 +35,5 @@ There are unit tests to cover the functionality and an integration test to verif
 To run
 
 ```
-npm run test
+go test
 ```
