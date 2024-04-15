@@ -13,12 +13,6 @@ Lightweight express app which calls a configured endpoint periodically and calcu
 - The endpoint is subject to rate limiting, but in this use case it is not predicted to occur, as such any error of this nature is subject to the above.
   - If requirements favoured uptime instead of calling every second, then a retry mechanism with backoff would be introduced to adhere to the rate limit.
 - The latest number retrieved from the service is stored in memory, but instead of storing _all_ collected numbers in memory the application calculates a cumulative average to avoid memory bloat over time.
-- Using a recursive timeout to call the endpoint every second is a trade off:
-  - It is simple to implement and understand
-  - Can be tested with jest's fake timers
-  - It is cancellable (i.e on exit); but
-  - It relies on the event loop so may not actually be run every second
-  - It may still call endpoint after it's been cancelled.
 
 ## Run
 

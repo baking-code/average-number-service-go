@@ -13,11 +13,19 @@ var mockEndpoint = func() int {
 }
 
 var isRunning = false
+var instance *Server
 
 func setup() {
 	if !isRunning {
-		Server(mockEndpoint)
+		instance = MakeServer(mockEndpoint)
+		instance.Start()
 		isRunning = true
+	}
+}
+
+func cleanup() {
+	if instance != nil {
+		instance.Close()
 	}
 }
 
@@ -58,5 +66,6 @@ func TestServer(t *testing.T) {
 
 	goodRequest = makeRequestWithResponse("/17")
 	assert.Equal(t, "0", string(goodRequest))
+	cleanup()
 
 }

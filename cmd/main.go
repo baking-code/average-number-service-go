@@ -6,5 +6,7 @@ import (
 )
 
 func main() {
-	app.Server(httpfunctions.Fetch)
+	srv := app.MakeServer(httpfunctions.Fetch)
+	srv.Start()
+	srv.CloseOnSignal()
 }
